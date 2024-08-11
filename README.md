@@ -12,12 +12,15 @@ Step 2: Make the Script Executable
 Make the script executable by running:
 Bash
 > [!NOTE]
+```
 chmod +x python_test.sh
+```
 Step 3: Run the Script
 Run the script by executing:
-## Bash
+```
 ./python_test.sh
-Log File
+```
+### Log File
 The script logs errors and successful completions to a file named python_test_log.txt in the same directory.
 ## Script Output
 The script outputs the following information:
