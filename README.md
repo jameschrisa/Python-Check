@@ -4,16 +4,16 @@ Check your systems Python is working properly
 ## Description
 This bash script checks if Python is installed, provides the path location of the Python executable, displays the Python version, runs a test with a simple print function, and performs a command line test. It also logs errors and successful completions to a log file.
 ## Usage
-Step 1: Save the Script
+* Step 1: Save the Script
 Save the script as a file (e.g., python_test.sh).
-Step 2: Make the Script Executable
+* Step 2: Make the Script Executable
 Make the script executable by running:
 Bash
 > [!NOTE]
 ```
 chmod +x python_test.sh
 ```
-### Step 3: Run the Script
+* Step 3: Run the Script
 Run the script by executing:
 ```
 ./python_test.sh
