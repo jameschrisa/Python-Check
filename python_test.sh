@@ -1,48 +1,39 @@
 #!/bin/bash
 
-# Set log file
-LOG_FILE="python_test_log.txt"
+# Color codes
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'  # No color
 
-# Check if Python is installed
-if command -v python &> /dev/null; then
-    echo "Python is installed." | tee -a $LOG_FILE
+# Check if Python 3 is installed
+if command -v python3 &> /dev/null; then
+    echo -e "${GREEN}Python 3 is installed.${NC}"
 else
-    echo "Error: Python is not installed. Please install Python." | tee -a $LOG_FILE
+    echo -e "${RED}Error: Python 3 is not installed. Please install Python 3.${NC}" >&2
     exit 1
 fi
 
-# Get the path to Python
-PYTHON_PATH=$(which python)
+# Get the path to Python 3
+PYTHON_PATH=$(which python3)
 if [ -z "$PYTHON_PATH" ]; then
-    echo "Error: Unable to find Python path." | tee -a $LOG_FILE
+    echo -e "${RED}Error: Unable to find Python 3 path.${NC}" >&2
     exit 1
 fi
-echo "Python is located at: $PYTHON_PATH" | tee -a $LOG_FILE
+echo -e "${GREEN}Python 3 path: $PYTHON_PATH${NC}"
 
-# Get the Python version
-PYTHON_VERSION=$(python --version 2>&1 | cut -d ' ' -f 2-)
+# Get the Python 3 version
+PYTHON_VERSION=$(python3 --version 2>&1)
 if [ -z "$PYTHON_VERSION" ]; then
-    echo "Error: Unable to get Python version." | tee -a $LOG_FILE
+    echo -e "${RED}Error: Unable to get Python 3 version.${NC}" >&2
     exit 1
 fi
-echo "Python version: $PYTHON_VERSION" | tee -a $LOG_FILE
+echo -e "${GREEN}Python 3 version: $PYTHON_VERSION${NC}"
 
 # Run a test with a simple print function
-echo "Running Python test..." | tee -a $LOG_FILE
-if python -c 'import sys; print(f"Python version: {sys.version}"); print(f"Location: {sys.executable}"); print("Python has been installed and is working correctly.")'; then
-    echo "Python test successful." | tee -a $LOG_FILE
+echo -e "${GREEN}Running Python 3 test...${NC}"
+if python3 -c 'print("Hello, World!")'; then
+    echo -e "${GREEN}Python 3 test successful.${NC}"
 else
-    echo "Error: Python test failed." | tee -a $LOG_FILE
+    echo -e "${RED}Error: Python 3 test failed.${NC}" >&2
     exit 1
 fi
-
-# Command line test
-echo "Command line test: Print 'Hello, World!'" | tee -a $LOG_FILE
-if python -c 'print("Hello, World!")'; then
-    echo "Command line test successful." | tee -a $LOG_FILE
-else
-    echo "Error: Command line test failed." | tee -a $LOG_FILE
-    exit 1
-fi
-
-echo "All tests completed successfully." | tee -a $LOG_FILE
